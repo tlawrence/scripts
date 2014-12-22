@@ -1,0 +1,31 @@
+require 'rest_client'
+require 'json'
+
+class Portal
+  def initialize(user,pass,host)
+    RestClient.proxy = "http://localhost:8888/"
+    @resource = RestClient::Resource.new "https://#{host}/api", :headers => {:accept => 'application/json,application/vnd-skyscapecloud-v1', 'content-type' => :json}
+    
+    cookies = login(user,pass)
+    #puts cookies['rack.session']
+    cookies['rack.session'] = CGI::escape(cookies['rack.session'])
+    #puts cookies['rack.session']
+    @resource.headers[:cookies] = cookies
+    
+    
+    
+    
+    puts @resource.headers
+  end
+  
+  def login(user,pass)
+    data = {:email => user, :password => pass}.to_json
+    res = @resource['authenticate'].post data
+    res.cookies
+  end
+  
+  def get_vms
+    res = @resource['my_vm'].get
+    puts res
+  end
+end

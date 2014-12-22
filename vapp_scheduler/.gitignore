@@ -1,0 +1,6 @@
+*.cred
+*.log
+*.zip
+*.csv
+Config.ps1
+~*

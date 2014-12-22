@@ -1,0 +1,21 @@
+PATH
+  remote: ../../cf-uaa-lib
+  specs:
+    cf-uaa-lib (3.1.0)
+      multi_json
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    mime-types (2.3)
+    multi_json (1.10.1)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+
+PLATFORMS
+  ruby
+  x86-mingw32
+
+DEPENDENCIES
+  cf-uaa-lib!
+  rest-client

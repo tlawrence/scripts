@@ -1,0 +1,7 @@
+$credentialstore = "c:\GIT\scripts\vapp_scheduler\creds"
+$log = "vappcontrol.log"
+$vappfile = "c:\GIT\scripts\vapp_scheduler\vapplist.csv"
+$mailfromaddress = "admin@yourcompany.com"
+$mailserver = "smtp.yourcompany.local"
+$vcloudaddress = "api.vcd.yourcloud.com"
+$notifyerrors = $true

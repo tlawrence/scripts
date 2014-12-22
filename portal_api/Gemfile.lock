@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
+    json (1.8.1)
+    multipart-post (1.2.0)
+
+PLATFORMS
+  x86-mingw32
+
+DEPENDENCIES
+  faraday
+  faraday_middleware
+  json

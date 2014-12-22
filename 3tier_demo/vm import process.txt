@@ -1,0 +1,13 @@
+Get target #vms for each tier - DONE
+Get actual #vms connected to each tier - DONE
+calculate differential for each tier - DONE
+
+future: delete vms from tier with too many
+
+aggregate total new vms required - DONE
+create pool of "unused" vms in a thread pool
+generate recomposition params using vms from spare vm pool
+recompose
+
+		
+
