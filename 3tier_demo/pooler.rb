@@ -53,7 +53,9 @@ module Deployment
       puts "  Deploying Pool VM: #{name}"
       vapp_id = image.instantiate(name,options)
       raise "  Failed to Create Pool VM: #{name}" unless vapp_id
+      vm = vdc.vapps.get_by_name(name).vms.first
       puts "  Completed Deployment Of Pool VM: #{name}"
+      vm.href
       
     end
     

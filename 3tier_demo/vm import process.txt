@@ -5,8 +5,8 @@ calculate differential for each tier - DONE
 future: delete vms from tier with too many
 
 aggregate total new vms required - DONE
-create pool of "unused" vms in a thread pool
-generate recomposition params using vms from spare vm pool
+create pool of "unused" vms in a thread pool DONE
+generate recomposition params using vms from spare vm pool DONE
 recompose
 
 		

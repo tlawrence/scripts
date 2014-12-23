@@ -80,7 +80,8 @@ module Deployment
       
       created_vms = create_spare_vms(config, total_new_vms)
       
-      merge_spare_vms(config, created_vms, adjustments)
+      merge_spare_vms(config, created_vms, adjustments, vapp, vdcname)
+      
       
       
     end
@@ -94,11 +95,11 @@ module Deployment
       
     end
     
-    def merge_spare_vms(config, created_vms)
+    def merge_spare_vms(config, created_vms, adjustments, vapp,vdcname)
       puts "Merging #{created_vms.count} new vms"
-      merger = Deployment::Merger.new(@vcloud)
+      merger = Deployment::Merger.new(@vcloud,vapp,vdcname)
       
-      merger.merge_vms(config,created_vms)
+      merger.merge_vms(config,created_vms,adjustments)
     end
     
     def calculate_adjustments(vapp, name, tiernames)

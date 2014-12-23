@@ -12,7 +12,7 @@ vapp:
     dns: 8.8.8.8
   vms:
   - name: web
-    quantity: 1
+    quantity: 3
     external: 10.0.1.50
     gateway: 172.21.1.1
     rules:
