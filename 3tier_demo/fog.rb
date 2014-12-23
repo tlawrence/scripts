@@ -2,6 +2,7 @@ require 'fog'
 require_relative 'generators/compose_vapp'
 require_relative 'generators/recompose_vapp'
 require_relative 'pooler'
+require_relative 'merger'
 
 module Deployment
   class Vcloud
@@ -77,7 +78,10 @@ module Deployment
         end
       end
       
-      create_spare_vms(config, total_new_vms)
+      created_vms = create_spare_vms(config, total_new_vms)
+      
+      merge_spare_vms(config, created_vms, adjustments)
+      
       
     end
     
@@ -88,6 +92,13 @@ module Deployment
       pooler.populate(config,quantity)
       #
       
+    end
+    
+    def merge_spare_vms(config, created_vms)
+      puts "Merging #{created_vms.count} new vms"
+      merger = Deployment::Merger.new(@vcloud)
+      
+      merger.merge_vms(config,created_vms)
     end
     
     def calculate_adjustments(vapp, name, tiernames)
