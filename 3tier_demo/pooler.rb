@@ -21,6 +21,7 @@ module Deployment
       
       
       names = generate_names(quantity)
+      final = {}
       
       work_q = Queue.new
       names.map {|n| work_q.push(n)}
@@ -28,13 +29,17 @@ module Deployment
         Thread.new do
           begin
             while vm = work_q.pop(true)
-              instantiate(vm,image,vdc)
+              final[vm] = instantiate(vm,image,vdc)
             end
           rescue ThreadError
           end
         end
       end; "ok"
       workers.map(&:join); "ok"
+      
+      raise "ERROR: #{names.count} VMs Requested, #{final.count} Created" unless names.count == final.count
+      
+      final
       
     end
     
