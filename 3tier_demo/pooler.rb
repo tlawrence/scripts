@@ -1,11 +1,13 @@
 require 'securerandom'
 require_relative 'utils'
+require 'thread'
 
 module Deployment
   class Pooler
-  
+    MAX_THREADS = 10
+    
     def initialize(vcloud)
-      MAX_THREADS = 10
+      
       @vcloud = vcloud
     end
     
@@ -17,10 +19,23 @@ module Deployment
       image = catalogue.catalog_items.get_by_name(params['vapp']['template'])
       
       
+      
       names = generate_names(quantity)
       
+      work_q = Queue.new
+      names.map {|n| work_q.push(n)}
+      workers = (1..MAX_THREADS).map do
+        Thread.new do
+          begin
+            while vm = work_q.pop(true)
+              instantiate(vm,image,vdc)
+            end
+          rescue ThreadError
+          end
+        end
+      end; "ok"
+      workers.map(&:join); "ok"
       
-      names.map {|vm| instantiate(vm,image,vdc)}
     end
     
     def instantiate(name,image,vdc)
@@ -30,10 +45,10 @@ module Deployment
         :deploy => true,
         :powerOn => false,
       }
-      puts " Deploying Pool VM: #{name}"
+      puts "  Deploying Pool VM: #{name}"
       vapp_id = image.instantiate(name,options)
-      raise "Failed to Create Pool VM: #{name}" unless vapp_id
-      puts " Completed Deployment Of Pool VM: #{name}"
+      raise "  Failed to Create Pool VM: #{name}" unless vapp_id
+      puts "  Completed Deployment Of Pool VM: #{name}"
       
     end
     
