@@ -11,7 +11,7 @@ module Deployment
         :vcloud_director_username => "#{user}@#{org}",
         :vcloud_director_password => pass,
         :vcloud_director_host => url,
-        :vcloud_director_show_progress => true, # task progress bar on/off
+        :vcloud_director_show_progress => false, # task progress bar on/off
       )
 
       @org = @vcloud.organizations.first
