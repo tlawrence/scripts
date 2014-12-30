@@ -8,11 +8,11 @@ The firewall for each tier will be configured as per the configuration file.
 
 ##The Following YAML File:
 
-![yml file example](https://github.com/tlawrence/scripts/tree/master/3tier_demo/images/yaml_file.jpg)
+![yml file example](https://github.com/tlawrence/scripts/blob/master/3tier_demo/images/yaml_file.jpg)
 
 ##When Deployed, Becomes:
 
-![schematic](https://github.com/tlawrence/scripts/tree/master/3tier_demo/images/deployed_vapp.jpg)
+![schematic](https://github.com/tlawrence/scripts/blob/master/3tier_demo/images/deployed_vapp.jpg)
 
 ##YAML Properties:
 There is a sample configuration file called "environment.yml" in this repository. Most of the setting are self explanatory but a full list of settings is below. 
