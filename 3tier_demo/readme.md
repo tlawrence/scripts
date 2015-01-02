@@ -18,7 +18,27 @@ The firewall for each tier will be configured as per the configuration file.
 There is a sample configuration file called "environment.yml" in this repository. Most of the setting are self explanatory but a full list of settings is below. When deploying, ensure you honour the white space indentation as demonstrated in the 'environment.yml'
 
 * name
-..*  The name the vApp will be given in vCloud Director
+  *  The name the vApp will be given in vCloud Director
+* vdc
+  * The name of the vCloud Virtual Datacentre which will host the vApp & Source Template
+* catalogue
+  * The name of the vcloud catalogue which holds the template VM that will be used to populate the vApp
+* template
+  * The name of the template VM that will be used to populate the vApp
+* public_ip
+  * Not yet implemented. Address to NAT to the front end of the App. 
+* bastion_ip
+  * IP address of a bastion vm or 'jump box' which will be used to access the VMs in this vApp. A firewall rule wil be added to each tier allowing SSH traffic from this VM
+* backbone
+  * configuration of the Org VDC Network which each firewall in the vApp will be connected to
+    * name
+      * The name as it appears in vCloud Director of the Org VDC Network. Must be unique within the vCloud Organisation
+    * gateway
+      * The desired default gateway for the network. vCloud will use this and the subnet mask to decipher the subnet id.
+    * mask
+      * The desired subnet mask for the backbone network
+    * dns
+      * Required but not yet fully implemented. DNS resolver that vApp VMs will inherit
 
 
 
