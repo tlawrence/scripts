@@ -63,13 +63,13 @@ There is a sample configuration file called "environment.yml" in this repository
 
 
 ##Usage:
-Firstly clone this repository:
-`git clone https://github.com/tlawrence/scripts.git`
+Firstly clone this repository into a local directory:
+`>git clone https://github.com/tlawrence/scripts.git`
 
 In the root of the repository there is a 'bootstrap.rb' file which you can fill in with your vCloud credentials. 
-The project uses the Ruby Gem "Bundler" to handle any dependencies so ensure Ruby and the bundler gem are installed `gem install bundler` then from the root directory run:
+The project uses the Ruby Gem "Bundler" to handle any dependencies so ensure Ruby and the bundler gem are installed (`>gem install bundler`) then from the root directory run:
 
-`bundle exec ruby bootstrap.rb environment.yml`
+`>bundle exec ruby bootstrap.rb environment.yml`
 
 This tells bundler to run the 'bootstrap.rb' script using the Ruby interpreter and the gems listed in 'Gemfile'. 'environemnt.yml' (your vApp config) is passed as an argument to 'bootstrap.rb'. the script will output useful information to the console.
 
