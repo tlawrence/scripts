@@ -78,9 +78,11 @@ module Deployment
         end
       end
       
-      created_vms = create_spare_vms(config, total_new_vms)
+      if total_new_vms > 0 then
+        created_vms = create_spare_vms(config, total_new_vms)
       
-      merge_spare_vms(config, created_vms, adjustments, vapp, vdcname)
+        merge_spare_vms(config, created_vms, adjustments, vapp, vdcname)
+      end
       
       
       
@@ -131,7 +133,7 @@ module Deployment
     
     def update_vapp(name,vdcname, parentnet, vappnets, bastion_ip, vappid)
       body = Generators::Recompose.generate(name,vdcname, parentnet, vappnets, bastion_ip, @org)
-      
+      puts body
       process_task(@vcloud.request(
           :body    => body,
           :expects => 202,

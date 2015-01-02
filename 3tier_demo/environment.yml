@@ -32,11 +32,15 @@ vapp:
     - name: tomcat
       source: 172.21.1.0/24
       port: 8080
-      protocol: UDP
-    - name: tomcat2
+      protocol: TCP
+    - name: udprule
       source: 172.21.2.0/24
       port: 8080
       protocol: UDP
+    - name: anyrule
+      source: 172.21.2.0/24
+      port: 8080
+      protocol: ANY
   - name: db
     quantity: 1
     external: 10.0.1.52

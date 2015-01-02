@@ -54,7 +54,16 @@ module Deployment
                                 x.IsEnabled true
                                 x.Policy 'allow'
                                 x.Protocols{
-                                  x.Other 'TCP'
+                                  case rule['protocol']
+                                  when 'TCP'
+                                    x.Other 'TCP'
+                                  when 'UDP'
+                                    x.Other 'UDP'
+                                  when 'ICMP'
+                                    x.Icmp true
+                                  when 'ANY'
+                                    x.Any true
+                                  end
                                 }
                                 x.IcmpSubType
                                 x.Port rule['port']
