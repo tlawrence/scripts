@@ -66,6 +66,7 @@ module Deployment
       else
         puts "Creating vApp #{name}"
         create_vapp(name,vdcname, parentnet, vappnets, bastion_ip)
+        vapp =  vappexists?(name,vdcname)
       end
       
       
@@ -104,10 +105,10 @@ module Deployment
       merger.merge_vms(config,created_vms,adjustments)
     end
     
-    def calculate_adjustments(vapp, name, tiernames)
-      actual_count = connected_vms(vapp,name)
+    def calculate_adjustments(vapp, name, tiers)
+      actual_count = connected_vms(vapp,tiers)
       adjustments = {}
-      tiernames.each do |net|
+      tiers.each do |net|
         name = net['name']
         delta = net['quantity'] - actual_count[name]
         
@@ -120,11 +121,13 @@ module Deployment
       adjustments
     end
         
-    def connected_vms(vapp, netname)
+    def connected_vms(vapp,tiers)
       actual = {}
-      vapp.vms.each do |vm|
-        actual[vm.network.network] = 0 unless actual[vm.network.network]
-        actual[vm.network.network] += 1
+      tiers.map {|tier| actual[tier['name']]= 0}
+      if vapp.vms then
+        vapp.vms.each do |vm|
+          actual[vm.network.network] += 1
+        end
       end
 
 
@@ -133,7 +136,7 @@ module Deployment
     
     def update_vapp(name,vdcname, parentnet, vappnets, bastion_ip, vappid)
       body = Generators::Recompose.generate(name,vdcname, parentnet, vappnets, bastion_ip, @org)
-      puts body
+      
       process_task(@vcloud.request(
           :body    => body,
           :expects => 202,
@@ -156,7 +159,7 @@ module Deployment
               :parser  => Fog::ToHashDocument.new,            
               :path    => "/vdc/#{vdc_id(vdcname)}/action/composeVApp"
       )) 
-    
+      
     end
 
     

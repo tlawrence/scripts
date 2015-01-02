@@ -27,9 +27,17 @@ module Deployment
                             x.Dns1 '8.8.8.8'
                             x.Dns2
                             x.DnsSuffix
-                            x.IsEnabled true
+                            x.IpRanges{
+                              x.IpRange{
+                                x.StartAddress net['gateway'].gsub(/1$/,'2')
+                                x.EndAddress net['gateway'].gsub(/1$/,'100')
+                              }
+                            }
                             x.AllocatedIpAddresses
                             x.SubAllocations
+                            #x.IsEnabled true
+                            
+                            
                           }
                         }
                         x.ParentNetwork(:href =>  org.networks.get_by_name(parentnet).href)
