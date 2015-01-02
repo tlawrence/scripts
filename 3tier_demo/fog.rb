@@ -69,7 +69,7 @@ module Deployment
       end
       
       
-      puts 'Checking VM Counts For Each Tier'
+      puts 'Checking VM Counts For Each Tier (may take a while)'
       adjustments = calculate_adjustments(vapp,name,vappnets)
       total_new_vms = 0
       adjustments.each do |k,v|
@@ -114,23 +114,18 @@ module Deployment
         adjustments[name] = delta
         
       end
-      
+
       adjustments
     end
         
     def connected_vms(vapp, netname)
       actual = {}
-      vapp.network_config.each do |config|
-        connections = config[:Configuration][:IpScopes][:IpScope][:AllocatedIpAddresses]
-        if connections then
-          count = connections.count
-        else
-          count = 0
-        end
-        
-        actual[config[:networkName]] = count
-        
+      vapp.vms.each do |vm|
+        actual[vm.network.network] = 0 unless actual[vm.network.network]
+        actual[vm.network.network] += 1
       end
+
+
       actual
     end
     

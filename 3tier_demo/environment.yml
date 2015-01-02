@@ -1,6 +1,6 @@
 vapp:
   name: '3-tier auto deployed'
-  vdc: 'SkyScape - The Deep Dive (IL2-TRIAL-BASIC)'
+  vdc: 'SkyScape - The Deep Dive West (IL2-TRIAL-BASIC)'
   catalogue: images
   template: centos_template
   public_ip: 185.40.10.38
@@ -19,9 +19,11 @@ vapp:
     - name: web
       source: any
       port: 80
+      protocol: TCP
     - name: ssl
       source: any
       port: 443
+      protocol: TCP
   - name: app
     quantity: 1
     external: 10.0.1.51
@@ -30,6 +32,11 @@ vapp:
     - name: tomcat
       source: 172.21.1.0/24
       port: 8080
+      protocol: UDP
+    - name: tomcat2
+      source: 172.21.2.0/24
+      port: 8080
+      protocol: UDP
   - name: db
     quantity: 1
     external: 10.0.1.52
@@ -38,3 +45,4 @@ vapp:
     - name: mysql
       source: 172.21.2.0/24
       port: 3306
+      protocol: TCP

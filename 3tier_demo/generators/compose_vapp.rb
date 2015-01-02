@@ -46,7 +46,7 @@ module Deployment
                                 x.IsEnabled true
                                 x.Policy 'allow'
                                 x.Protocols{
-                                  x.Other 'TCP'
+                                  x.Other rule['protocol']
                                 }
                                 x.IcmpSubType
                                 x.Port rule['port']

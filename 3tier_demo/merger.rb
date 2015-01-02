@@ -46,9 +46,10 @@ module Deployment
     end
     
     def delete_vapp_shells(vapp_shells)
-      
-      vapp_shells.each do |name,ref|
-        @vdc.vapps.get_by_name(name).destroy
+      if vapp_shells then
+        vapp_shells.each do |name,ref|
+          @vdc.vapps.get_by_name(name).destroy
+        end
       end
       
     end

@@ -39,6 +39,26 @@ There is a sample configuration file called "environment.yml" in this repository
       * The desired subnet mask for the backbone network
     * dns
       * Required but not yet fully implemented. DNS resolver that vApp VMs will inherit
+* vms
+  * This is the section where you define each tier of the app. It is an array (yaml uses the "-" symbol to separate array elements) so you can add as many tiers as you need
+    * name
+      * The name of the tier (web / app / db etc). The vApp network will be named using this label
+    * quantity
+      * How many VMs to fill this tier with. If you increase this figure and re-run the script then additional vms will be added to the tier to ensure compliance with the configuration. Reducing the number of VMs in the tier is not yet implemented
+    * external
+      * This must be an unused IP address on the backbone network. It will be added as the external interface of the tier's vShield Edge firewall
+    * gateway
+      * The desired default gateway for the tier's subnet. Currently the default tier subnet size is /24
+    * rules
+      * This section defines firewall rules for the tier. the rules section is an array allowing many rules to be added. A rule for SSH from the bastion IP is added by default and does not need to be specified here
+        * name
+          * A useful name for the firewall rule (eg http). Name is the array item definition and must be prefixed with a "-" 
+        * source
+          * Can be external (e.g anything outside the tier) / a singe IP address or a subnet in slash notation (e.g 10.0.1.0/24)
+        * port
+          * The destination port for the rule. 
+        * protocol
+          * The protocol for the rule. Valid options are TCP , UDP , ICMP or ANY
 
 
 
