@@ -15,7 +15,10 @@ The firewall for each tier will be configured as per the configuration file.
 ![schematic](https://github.com/tlawrence/scripts/blob/master/3tier_demo/images/deployed_vapp.jpg)
 
 ##YAML Properties:
-There is a sample configuration file called "environment.yml" in this repository. Most of the setting are self explanatory but a full list of settings is below. 
+There is a sample configuration file called "environment.yml" in this repository. Most of the setting are self explanatory but a full list of settings is below. When deploying, ensure you honour the white space indentation as demonstrated in the 'environment.yml'
+
+*name
+..*The name the vApp will be given in vCloud Director
 
 
 
