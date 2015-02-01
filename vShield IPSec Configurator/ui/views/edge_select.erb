@@ -1,0 +1,16 @@
+<h2>Select a vShield<h2>
+	<div id=main>
+		<div id=select>
+			<select form="tunnel_info" name="vshield">
+				<% vshields.each do |vshield| %>
+					<option value=<%= vshield[:name] %>> <%= "#{vshield[:name]} (#{vshield[:vdc_name]})" %> </option>
+				<% end %>
+			</select>
+		</div>
+		<div id=submit>
+			<form action="/tunnel_info" method="POST" id="tunnel_info">
+				<input type="submit">
+			</form>
+		</div>
+
+	</div>

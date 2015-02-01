@@ -1,0 +1,55 @@
+body {
+	font:12px Arial,serif;
+	line-height:22px;
+	background-color: #F2F2F2;
+}
+
+
+
+
+table{
+	background-image: #8C8C8C
+	
+	border-collapse:collapse;
+	width: 100%;
+	border-radius: 10px;
+}
+
+td{
+	padding: 5px;
+	
+}
+
+input.ip{
+
+	width: 85px;
+}
+
+input.name{
+	width: 100px;
+}
+
+
+.header{
+	font-weight: bold
+}
+
+#main{
+	width:1024px;
+	margin: 0 auto;
+	display: inline-table;
+}
+
+.controls{
+	float: right;
+	padding-top: 20px;
+}
+
+.icon{
+	height: 20px;
+	width: 20px;
+}
+
+button{
+	border-radius: 10%;
+}

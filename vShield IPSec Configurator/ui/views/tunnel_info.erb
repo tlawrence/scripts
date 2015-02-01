@@ -1,0 +1,37 @@
+<h2> Tunnel Info For Edge: <%= vshield_name %></h2>
+	<div id=main>
+		<div id=tunnel_list>
+			<table style=border:all>
+				<tr class="header">
+					<td> Name </td>
+					<td> Peer Id </td>
+					<td> Peer Ip </td>
+					<td> Local Id </td>
+					<td> Local Ip </td>
+					<td> Shared Secret </td>
+					<td> Local Networks </td>
+					<td> Peer Networks </td>				
+				</tr>
+				<% tunnels.each do |tunnel| %>
+					<tr>
+						<td><%= tunnel[:name] %></td>
+						<td><%= tunnel[:peer_id] %></td>
+						<td><%= tunnel[:peer_ip] %></td>
+						<td><%= tunnel[:local_id] %></td>
+						<td><%= tunnel[:local_ip] %></td>
+						<td><%= tunnel[:shared_secret] %></td>
+						<td>
+							<% tunnel[:local_networks].each do |net| %>
+								<%= net[:gateway]%> / <%= net[:netmask]%><br>
+							<% end %>
+						</td>
+						<td>
+							<% tunnel[:peer_networks].each do |net| %>
+								<%= net[:gateway]%> / <%= net[:netmask]%><br>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
