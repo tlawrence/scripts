@@ -1,0 +1,6 @@
+get lb enabled tiers
+get ips for each tier
+get configured load balancer type
+update pools with tier ips (poolname,nodelist)
+
+

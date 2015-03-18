@@ -1,5 +1,5 @@
 vapp:
-  name: '2-tier auto deployed'
+  name: 'DVLA Demo'
   vdc: 'SkyScape - The Deep Dive West (IL2-TRIAL-BASIC)'
   catalogue: images
   template: centos_template
@@ -11,8 +11,8 @@ vapp:
     mask: 255.255.255.0
     dns: 8.8.8.8
   vms:
-  - name: web
-    quantity: 2
+  - name: dmz
+    quantity: 3
     external: 10.0.1.60
     gateway: 172.21.1.1
     rules:
@@ -24,6 +24,10 @@ vapp:
       source: any
       port: 443
       protocol: TCP
+    - name: dns
+      source: any
+      port: 53
+      protocol: UDP
   - name: data
     quantity: 1
     external: 10.0.1.61

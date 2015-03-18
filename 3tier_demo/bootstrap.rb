@@ -10,6 +10,6 @@ vcdconfig= {
 
 configfile = ARGV[0]
 
-vcd = Deploy.new(configfile,vcdconfig)
+vcd = Deployment::Deploy.new(configfile,vcdconfig)
 
 vcd.deploy

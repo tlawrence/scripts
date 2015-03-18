@@ -12,13 +12,13 @@ vapp:
     dns: 8.8.8.8
   vms:
   - name: web
-    quantity: 3
+    quantity: 4
     external: 10.0.1.50
     gateway: 172.21.1.1
     rules:
     - name: web
       source: any
-      port: 80
+      port: 8080
       protocol: TCP
     - name: ssl
       source: any
