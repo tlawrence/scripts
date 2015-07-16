@@ -50,8 +50,8 @@ module Deployment
                           x.FirewallService{
                             net['rules'].each do |rule|
                               x.FirewallRule{
-                                x.Id rule['name']
                                 x.IsEnabled true
+                                x.Description rule['name']
                                 x.Policy 'allow'
                                 x.Protocols{
                                   case rule['protocol']
@@ -73,8 +73,8 @@ module Deployment
                               }
                             end
                             x.FirewallRule{
-                              x.Id 'SSH'
                               x.IsEnabled true
+                              x.Description 'SSH'
                               x.Policy 'allow'
                               x.Protocols{
                                 x.Other 'TCP'
