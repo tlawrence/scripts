@@ -1,5 +1,5 @@
 vapp:
-  name: 'DVLA Demo'
+  name: 'Marsden'
   vdc: 'SkyScape - The Deep Dive West (IL2-TRIAL-BASIC)'
   catalogue: images
   template: centos_template
@@ -18,7 +18,11 @@ vapp:
     rules:
     - name: web
       source: any
-      port: 80
+      port: 8080
+      protocol: TCP
+    - name: web_alt
+      source: any
+      port: 8180
       protocol: TCP
     - name: ssl
       source: any
