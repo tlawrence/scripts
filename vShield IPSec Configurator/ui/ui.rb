@@ -2,7 +2,7 @@ require 'sinatra'
 require 'json'
 
 get '/' do
-  erb :test
+  erb :login
 end
 
 get '/login' do
@@ -59,6 +59,8 @@ post '/tunnel_info' do
    
   erb :tunnel_info , :locals => {'vshield_name' => params[:vshield], 'tunnels' => tunnels}
 end
+
+
 
 get '/api/tunnel_info' do 
   content_type :json

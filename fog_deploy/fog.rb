@@ -74,7 +74,10 @@ puts item.vapp_template
   end
 
 def orgbody
-    puts @vcloud.organizations.first.body
+    profile =  @vcloud.get_vdc(@vcloud.organizations.first.vdcs.first.id).body[:VdcStorageProfiles][:VdcStorageProfile][0][:href].split('/').last
+    puts profile
+    
+    puts @vcloud.get_vdc_storage_class(profile).body
  
 end
 end

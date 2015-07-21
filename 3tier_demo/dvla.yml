@@ -1,0 +1,52 @@
+vapp:
+  name: '3tier-dev2-autodeployed'
+  vdc: 'DVLA - Development (IL2-PROD-STANDARD)'
+  catalogue: 'PaaS catalog'
+  template: 'redhat-7.1-x64-v0.9-2015-04-24T09:10:03Z'
+  public_ip: 83.151.216.162
+  bastion_ip: 83.151.216.165
+  backbone: 
+    name: dev_backbone
+    gateway: 172.16.4.1
+    mask: 255.255.255.0
+    dns: 8.8.8.8
+  vms:
+  - name: web
+    quantity: 1
+    external: 172.16.4.152
+    gateway: 192.168.15.1
+    rules:
+    - name: web
+      source: any
+      port: 8080
+      protocol: TCP
+    - name: ssl
+      source: any
+      port: 443
+      protocol: TCP
+  - name: app
+    quantity: 1
+    external: 172.16.4.151
+    gateway: 192.168.13.1
+    rules:
+    - name: tomcat
+      source: 192.168.2.2
+      port: 8080
+      protocol: TCP
+    - name: udprule
+      source: 192.168.2.2
+      port: 8080
+      protocol: UDP
+    - name: anyrule
+      source: 192.168.2.2
+      port: 8080
+      protocol: ANY
+  - name: db
+    quantity: 1
+    external: 172.16.4.154
+    gateway: 192.168.14.1
+    rules:
+    - name: mysql
+      source: 192.168.3.2
+      port: 3306
+      protocol: TCP
