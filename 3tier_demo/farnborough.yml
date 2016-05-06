@@ -1,0 +1,47 @@
+vapp:
+  name: 'ADAPT_DEMO'
+  vdc: 'Skyscape Support pod00001 Test'
+  catalogue: pod00001 Catalog
+  template: Lookbusy
+  public_ip: 185.40.10.38
+  bastion_ip: 10.0.0.11
+  backbone: 
+    name: isolated
+    gateway: 10.0.5.1
+    mask: 255.255.255.0
+    dns: 8.8.8.8
+  vms:
+  - name: dmz
+    quantity: 2
+    external: 10.0.1.60
+    gateway: 172.21.1.1
+    rules:
+    - name: web
+      source: any
+      port: 8080
+      protocol: TCP
+    - name: web_alt
+      source: any
+      port: 8180
+      protocol: TCP
+    - name: ssl
+      source: any
+      port: 443
+      protocol: TCP
+    - name: dns
+      source: any
+      port: 53
+      protocol: UDP
+  - name: data
+    quantity: 1
+    external: 10.0.1.61
+    gateway: 172.21.3.1
+    rules:
+    - name: mysql
+      source: 172.21.2.0/24
+      port: 3306
+      protocol: TCP
+    - name: tomcat
+      source: 172.21.1.0/24
+      port: 8080
+      protocol: TCP

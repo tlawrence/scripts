@@ -74,7 +74,7 @@ module Deployment
                             end
                             x.FirewallRule{
                               x.IsEnabled true
-                              x.Description rule['name']
+                              x.Description 'SSH'
                               x.Policy 'allow'
                               x.Protocols{
                                 x.Other 'TCP'

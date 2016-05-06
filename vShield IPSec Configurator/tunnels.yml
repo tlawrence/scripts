@@ -4,15 +4,12 @@
   local_id: 185.40.10.34
   local_ip: 185.40.10.34
   local_networks:
-  - name: DMZ
-    gateway: 10.0.1.0
-    netmask: 255.255.255.0
-  - name: DATA
-    gateway: 10.0.2.0
+  - name: VPN Test
+    gateway: 10.1.2.1
     netmask: 255.255.255.0
   peer_networks:
-  - name: HOME
-    gateway: 192.168.1.254
+  - name: Bal Edge Test 1
+    gateway: 10.1.1.1
     netmask: 255.255.255.0
   shared_secret: 123456789skyscape123456789skyscape123456789
       

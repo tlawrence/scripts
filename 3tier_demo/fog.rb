@@ -13,6 +13,9 @@ module Deployment
         :vcloud_director_password => pass,
         :vcloud_director_host => url,
         :vcloud_director_show_progress => false, # task progress bar on/off
+                    :connection_options => {
+              :omit_default_port => true
+              }
       )
 
       @org = @vcloud.organizations.first

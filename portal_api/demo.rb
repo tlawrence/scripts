@@ -1,4 +1,5 @@
 require_relative 'portal.rb'
+require 'objspace'
 
 class Demo
 
@@ -17,11 +18,27 @@ class Demo
     
     #puts portal.vms(org,vdc)
 
-    portal.vms_with_backup.each do |vm|
-      puts "VM: #{vm[:name]} VDC: #{vm[:vdc]} BACKUPS: #{vm[:backups].length}"
-    end
+    #portal.vms_with_backup.each do |vm|
+    #  puts "VM: #{vm[:name]} VDC: #{vm[:vdc]} BACKUPS: #{vm[:backups].length}"
+    #end
+    before =  Time.now
+    ##data =  portal.get_vms
+    data = portal.get_services("76")
+    #data = portal.get_accounts
+    
+    #puts data
+    after = Time.now
+    
+    duration = after - before
     
     
+    
+    puts duration.to_f
+    
+    puts ObjectSpace.memsize_of(data)
+    File.open('out.json', 'w') { |file| file.write(data) }
+    
+    #puts data["IPT"]["vms"].length
     #puts portal.get_call("REQ1003488")
 
     #puts portal.create_call('incident', 'StephenBoroughCouncil', 'compute', 'Production Service > unavailable or unresponsive', 'Call Subject', 'Call Description')

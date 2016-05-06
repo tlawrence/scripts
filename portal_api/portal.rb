@@ -15,6 +15,7 @@ class Portal
     @resource.headers = {'Accept' => 'application/json', 'Content-Type' => 'application/json'}
     cookies = login(user,pass)
     @resource.headers['Cookie'] = cookies
+    @resource.options[:timeout]      = 2000
     
     @data = JSON.parse(get_vms)
     
@@ -77,6 +78,16 @@ class Portal
   
   def get_vms
     res = @resource.get '/api/my_vm'
+    res.body
+  end
+  
+  def get_services(id)
+    res = @resource.get "/api/accounts/#{id}/compute_services"
+    res.body
+  end
+  
+  def get_accounts
+    res = @resource.get "/api/accounts"
     res.body
   end
   
